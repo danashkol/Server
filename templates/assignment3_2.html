@@ -1,0 +1,47 @@
+{% extends('base.html') %}
+
+    {% block tohen %}
+
+    <body class="bodyAssignment3_2" onload="markOnNav()">
+    <h1 class = "searchFor">Search for a User</h1>
+
+    <form action="/search">
+        <input id="search" type="text" name="user_name" placeholder="User Name"><br>
+        <input id = "sub"  type="submit" value="Search">
+    </form>
+
+    {% if user_name %}
+        <h2>{{ user_name | upper() }}</h2>
+        <h3>name: {{ name }}</h3>
+        <h3>email: {{ email}}</h3>
+    {% endif %}
+
+    {% if message %}
+        <h3 style="color: red">{{ message }}</h3>
+    {% endif %}
+
+    {% if catalog_Users %}
+        <ol>
+            {% for k, v in catalog_Users.items() %}
+                <li>Name: {{ k }}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+
+
+    {% if session['logedin'] %}
+        <h1>Hi {{ session['username'] | upper() }}, Thanks For Loging -In</h1>
+    {% else %}
+        <h1>If you already have an account please log-in</h1>
+        {% if message %}
+            <h2>{{ message }}</h2>
+        {% endif %}
+        <form  action="/log_in" method="post">
+            <input id="login" type="text" name="username" placeholder="Username">
+            <input id="login" type="password" name="password" placeholder="Password"><br>
+            <input id="sub" type="submit">
+        </form>
+    {% endif %}
+
+    </body>
+    {% endblock %}

@@ -1,0 +1,225 @@
+*{
+    padding: 0 0;
+}
+
+#header{
+    color:rgb(241, 143, 187); 
+    font-size: 80px;
+    font-weight: bold;
+    grid-area: Header;
+    position: relative;
+    text-align: center;
+}
+#header1{
+    color:rgb(241, 143, 187);
+    font-size: 40px;
+    font-weight: bold;
+    grid-area: Header;
+    position: relative;
+    text-align: center;
+}
+#login{
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+body{
+    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url(cookies\ background.jpg);
+    text-align: center;
+    position: relative;
+    font-family: cursive;
+    margin: 15px;
+    display: grid;
+}
+.bodyAssignment3_2{
+    color: rgba(255, 208, 233,.9);
+}
+
+.bodyHome{
+    color: rgb(241, 216, 230);
+    font-size: 20px;
+    grid-template-areas: 'Nav'
+    'Header'
+    'Main1';
+}
+.bodyCatalog{
+    color: rgba(255, 208, 233,.6);
+    font-size: 15px;
+}
+
+.bodySignUp{
+    color: rgba(0,0,0,.8);
+    grid-template-areas: 'Nav'
+    'Header'
+    'orderDetails contactDetails'
+    'click';
+}
+#sub{
+    background-color: rgba(255, 208, 233,.6); ;
+    border-color: rgba(0,0,0,.7);
+    color: rgba(0,0,0,.7);
+    width: 100px;
+    height: 35px;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+
+#search{
+    border-radius: 5px;
+    font-size: 20px;
+}
+#open{
+    width: 350px;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(241, 143, 187);
+    border-radius: 30px;
+    background: rgba(255, 208, 233,.8);
+    text-align: center; 
+    display: inline-block;
+}
+
+.text{
+    padding: 0 0;
+    position: relative;
+    grid-area: Main1;
+}
+
+#animation{
+    animation: pinkRainbow 10s ease-in-out 0.5s infinite ;
+}
+
+@keyframes pinkRainbow {
+    0%  {color: rgb(241, 216, 230);}
+    16% {color: rgb(241, 195, 212);}
+    33% {color: rgb(241, 175, 196);}
+    50% {color: rgb(241, 155, 187);}
+    66% {color: rgb(241, 174, 196);}
+    83% {color: rgb(241, 195, 212);}
+    100%{color: rgb(241, 216, 230);}
+}
+
+#h3{
+    color: rgb(247, 178, 213); 
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.navi a{
+    position: relative;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    font-size: 25px;
+    border: 1px solid #fff;
+    transition: 0.4s ease;
+    color: rgba(255, 255, 255,0.6);   
+    grid-area: Nav; 
+}
+
+.navi a:hover{
+    color: white;
+}
+
+.thisPage{
+    background: rgba(255, 208, 233,.8);
+    color: white;
+}
+
+li{
+    display: inline;
+}
+ 
+.orderDetails{
+    display: inline-block;
+    width: 30%;
+    grid-area: orderDetails;
+    position: relative;
+    height: 280px;
+    font-size: 20px;
+}
+
+.contactDetails{
+    display: inline-block;
+    width: 30%;
+    grid-area: contactDetails;
+    position: relative;
+    height: 280px;
+    font-size: 20px;
+}
+
+.bottom{
+    grid-area: click;
+    font-size: 20px;
+}
+
+#btn{
+    background-color: rgba(255, 208, 233,.6); ;
+    border-color: rgba(0,0,0,.7);
+    color: rgba(0,0,0,.7);
+    width: 100px;
+    height: 35px;
+    border-radius: 50px;
+}
+
+#btn:hover{
+    color: black;
+    border-color: black;
+}
+
+#total{
+    width: 30px;
+    height: 15px;
+    margin-top: 15px;
+}
+
+#agree{
+    margin-top: 15px;
+}
+
+#cookies{
+    height: 21px;
+    width: 150px;
+}
+
+@media only screen and (max-width:600px){
+    #header{
+        font-size: 45px;
+        height: fit-content;
+    }
+    .bodyHome{
+        display: grid;
+        font-size: 12px;
+        grid-template-areas: 'Nav'  
+        'Header'
+        'Main1' ;
+    }
+    .text{
+        padding: 5% 0;
+    }
+    .bodySignUp{
+        display: grid;
+        font-size: 15px;
+        grid-template-areas: 'Nav'
+        'Header'
+        'orderDetails' 
+        'contactDetails'
+        'click';
+    }
+    .orderDetails, .contactDetails, .bottom{
+        width: 100%;
+        height: 10px;
+        padding: 0 0;
+        font-size: 15px;
+    }
+    #h3{
+        font-size: 17px;
+    }
+    .navi a{
+        font-size: 15px;
+    }
+    #open{
+        font-size: 20px;
+        width: 250px;
+    }
+}
