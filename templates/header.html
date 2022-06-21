@@ -1,16 +1,16 @@
 <header>
     <nav class="navi">
-       <a href="/">Home Page</a>
+        <a href="/">Home Page</a>
         <a href='/catalog'>Cookies</a>
-        <a href='/signUp'>Go To Order</a>
+        <a href='/order'>Order</a>
         <a href='/log_in'>LogIn</a>
     </nav>
 </header>
 <header>
-        {% if session['logedin'] %}
+    {% if session['logedin'] %}
         <h1 id="header1">Welcome {{ session['username']  | upper() }} to Dana's cookies shop</h1>
-        {% else %}
-            <div id="header">Dana's cookies shop</div>
-        {% endif %}
+    {% else %}
+        <div id="header">Dana's cookies shop</div>
+    {% endif %}
 
 </header>

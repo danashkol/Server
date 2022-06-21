@@ -1,8 +1,7 @@
 {% extends('base.html') %}
-
-    {% block tohen %}
-<body class="bodyCatalog" onload="markOnNav()">
-<h1 class = "searchFor">Search for a Cookie for More Information</h1>
+{% block tohen %}
+    <body class="bodyCatalog" onload="markOnNav()">
+    <h1 class = "searchFor">Search for a Cookie for More Information</h1>
 
     <form action="/catalog">
         <input id="search" type="text" name="cookie_name" placeholder="Cookie Flavor"><br>
@@ -12,20 +11,26 @@
     {% if cookie_name %}
         <h2>{{ cookie_name | upper() }}</h2>
         <h3>Price: {{ cookie_price }}</h3>
-        <h3>Calories: {{ coolie_calories }}</h3>
+        <h3>Calories: {{ cookie_calories }}</h3>
+        <a id="logout" href="/clear">Clear</a>
+        <a id="order" href="/order">Go To Order</a>
     {% endif %}
 
     {% if message %}
         <h3 style="color: red">{{ message }}</h3>
     {% endif %}
 
-    {% if catalog_Price %}
-        <ol>
-        <h2>cookie flavors:</h2>
-            {% for k, v in catalog_Price.items() %}
-                <li><h3>{{ k }}</h3></li>
+    {% if catalog_cookies %}
+        <ol id="list">
+            <h2>cookie flavors:</h2>
+            {% for k, v in catalog_cookies.items() | sort %}
+                <li><h3>{{ k | capitalize}}</h3></li>
             {% endfor %}
         </ol>
     {% endif %}
-        </body>
-    {% endblock %}
+    </body>
+{% endblock %}
+{% block greeting %}
+    {{ super()}}
+    <h1 id="greet">and don't worry, cookie's calories doesn't count (;</h1>
+{% endblock %}

@@ -1,12 +1,12 @@
 {% extends('base.html') %}
 
-    {% block tohen %}
+{% block tohen %}
 
     <body class="bodyAssignment3_2" onload="markOnNav()">
     <h1 class = "searchFor">Search for a User</h1>
 
     <form action="/search">
-        <input id="search" type="text" name="user_name" placeholder="User Name"><br>
+        <input id="search" type="text" name="user_name" placeholder="Search by User Name"><br>
         <input id = "sub"  type="submit" value="Search">
     </form>
 
@@ -21,9 +21,10 @@
     {% endif %}
 
     {% if catalog_Users %}
-        <ol>
+        <ol id="list">
+            <h2>Users List:</h2>
             {% for k, v in catalog_Users.items() %}
-                <li>Name: {{ k }}</li>
+                <li><h3> {{k }}</h3></li>
             {% endfor %}
         </ol>
     {% endif %}
@@ -31,17 +32,18 @@
 
     {% if session['logedin'] %}
         <h1>Hi {{ session['username'] | upper() }}, Thanks For Loging -In</h1>
+        <a id="logout" href="/log_out">Log Out</a>
     {% else %}
         <h1>If you already have an account please log-in</h1>
-        {% if message %}
-            <h2>{{ message }}</h2>
+        {% if message1 %}
+            <h2>{{ message1 }}</h2>
         {% endif %}
         <form  action="/log_in" method="post">
             <input id="login" type="text" name="username" placeholder="Username">
             <input id="login" type="password" name="password" placeholder="Password"><br>
-            <input id="sub" type="submit">
+            <input id="sub" type="submit" value="Log-In">
         </form>
     {% endif %}
 
     </body>
-    {% endblock %}
+{% endblock %}

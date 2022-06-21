@@ -14,47 +14,51 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=1000)
 def home_page1():
     return render_template('home page.html')
 
-@app.route('/signUp')
-def signUp_page1():
-    return render_template('sign up.html')
+@app.route('/order')
+def order_page1():
+    return render_template('order.html')
 
 
-catalog_Price = {
-    'chocolate chip': '4$',
-    'peanut butter': '5$',
-    'kinder': '5$',
-    'amsterdam': '5.5$',
-    'nutella': '4.5$'
+catalog_cookies = {
+    'chocolate chip': {'price': '4$', 'calories': 200},
+    'peanut butter': {'price': '5$', 'calories': 300},
+    'kinder': {'price': '5$', 'calories': 250},
+    'amsterdam': {'price': '5.5$', 'calories': 250},
+    'nutella': {'price': '4.5$', 'calories': 300},
 }
-catalog_Calories = {
-    'chocolate chip': 200,
-    'peanut butter': 300,
-    'kinder': 250,
-    'amsterdam': 250,
-    'nutella': 300
-}
+@app.route('/clear')
+def clear_func():
+    return redirect(url_for('catalog_func'))
+
+@app.route('/order')
+def goToOrder_func():
+
+    return redirect('/signUp')
 
 @app.route('/catalog')
 def catalog_func():
     if 'cookie_name' in request.args:
         cookie_name = request.args['cookie_name']
-        if cookie_name in catalog_Price:
+        if cookie_name in catalog_cookies:
             return render_template('assignment3_1.html',
                                    cookie_name=cookie_name,
-                                   cookie_price=catalog_Price[cookie_name],
-                                   coolie_calories=catalog_Calories[cookie_name])
+                                   cookie_price=catalog_cookies[cookie_name]['price'],
+                                   cookie_calories=catalog_cookies[cookie_name]['calories'])
+        elif cookie_name == '':
+            return render_template('assignment3_1.html',
+                                   catalog_cookies=catalog_cookies)
         else:
             return render_template('assignment3_1.html',
                                    message='Sorry, we do not have this kind of cookie.')
     return render_template('assignment3_1.html',
-                           catalog_Price=catalog_Price)
+                           catalog_cookies=catalog_cookies)
 
 catalog_Users = {
-'User1': {'name': 'Yossi', 'email': 'yos@gmail.com'},
-'User2': {'name': 'Shimon', 'email': 'shim@gmail.com'},
-'User3': {'name': 'Romi', 'email': 'romi@gmail.com'},
-'User4': {'name': 'Noam', 'email': 'noam@gmail.com'},
-'User5': {'name': 'Lior', 'email': 'lior@gmail.com'},
+    'User1': {'name': 'Yossi', 'email': 'yos@gmail.com'},
+    'User2': {'name': 'Shimon', 'email': 'shim@gmail.com'},
+    'User3': {'name': 'Romi', 'email': 'romi@gmail.com'},
+    'User4': {'name': 'Noam', 'email': 'noam@gmail.com'},
+    'User5': {'name': 'Lior', 'email': 'lior@gmail.com'},
 }
 @app.route('/search')
 def users_func():
@@ -63,8 +67,11 @@ def users_func():
         if user_name in catalog_Users:
             return render_template('assignment3_2.html',
                                    user_name=user_name,
-                                   name=catalog_Users[user_name],
-                                   email=catalog_Users[user_name])
+                                   name=catalog_Users[user_name]['name'],
+                                   email=catalog_Users[user_name]['email'])
+        elif user_name == '':
+            return render_template('assignment3_2.html',
+                                   catalog_Users=catalog_Users)
         else:
             return render_template('assignment3_2.html',
                                    message='This user does not exist')
@@ -93,9 +100,16 @@ def login_func():
                                        username=username)
             else:
                 return render_template('assignment3_2.html',
-                                       message='Wrong password!')
+                                       message1='Wrong password!')
         else:
             return render_template('assignment3_2.html',
-                                   message='Please log in!')
+                                   message1='Please log in!')
     return render_template('assignment3_2.html')
+
+@app.route('/log_out')
+def logout_func():
+    session['logedin'] = False
+    session.clear()
+    return redirect(url_for('login_func'))
+
 
