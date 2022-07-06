@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Users Page{% endblock %}
+
+{% block tohen %}
+        <body class="bodyAssignment4" onload="markOnNav()">
+
+    {% if message3 %}
+        <h2>{{ message3 }}</h2>
+    {% endif %}
+    <div id="form" class="insert">
+        <h2>Insert User</h2>
+        <form action="/insert_user" method="post">
+            <input id = "input" type="text" name="username" placeholder="Insert Username" required>
+            <input id = "input" type="text" name="name" placeholder="Insert Name" required>
+            <input id = "input" type="email" name="email" placeholder="Insert Email" required>
+            <input id = "input" type="password" name="password" placeholder="Insert Password" required><br>
+            <input id="sub" type="submit" value="Insert">
+        </form>
+        {% if message5 %}
+            <h2>{{ message5 }}</h2>
+        {% endif %}
+    </div>
+
+    <div id="form">
+        <h2>Update User Details</h2>
+        <form action="/update_user" method="post">
+            <input id = "input" type="text" name="usernameU" placeholder="Insert Username" required>
+            <input id = "input" type="text" name="nameU" placeholder="Insert Name">
+            <input id = "input" type="email" name="emailU" placeholder="Insert Email">
+            <input id = "input" type="password" name="passwordU" placeholder="Insert Password"><br>
+            <input id="sub" type="submit" value="update">
+        </form>
+            {% if message6 %}
+            <h2>{{ message6 }}</h2>
+        {% endif %}
+    </div>
+    <div id="form">
+    <h2>Delete User</h2>
+        <form  action="/delete_user" method="post">
+                <input id = "input" type="text" name="usernameD" placeholder="Username"><br>
+                <input id = "sub" type="submit" value="Delete">
+        </form>
+    {% if message4 %}
+        <h2>{{ message4 }}</h2>
+    {% endif %}
+    </div>
+
+    <div>
+        <button id="json"><a href="/users">Get users list as Json</a></button>
+    </div>
+    <div>
+        <h2>Users List</h2>
+        {% for user in users %}
+            <div id="list">
+                <h3>{{ user.userName }}</h3>
+                <h4>Name: {{ user.name }}</h4>
+                <h4>Email: {{ user.email }}</h4>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+{% endblock %}
+
+
+
+
+

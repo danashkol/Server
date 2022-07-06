@@ -25,4 +25,28 @@ function markOnNav() {
 }
 
 
-
+function myFunction() {
+document.querySelector('#front')?.addEventListener('submit',(e)=> {
+    e.preventDefault()
+    const id = e.target.id.value
+    if (id > 12){
+        const email = document.getElementById("email")
+        email.classList.remove('invisible')
+        email.innerHTML ='no user with this id'
+    }
+    else {
+        fetch('https://reqres.in/api/users/' + id).then(
+            results => results.json())
+            .then(json => {
+                const image = document.getElementById("image")
+                const email = document.getElementById("email")
+                image.classList.remove('invisible')
+                email.classList.remove('invisible')
+                image.src = json.data.avatar
+                email.innerHTML = 'email: ' + json.data.email
+            })
+            .catch((e) => {
+            })
+    }
+})
+}

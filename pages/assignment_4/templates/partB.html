@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Users Page{% endblock %}
+
+{% block tohen %}
+    <body class="bodyAssignment4" onload="markOnNav()">
+    <div id="form">
+        <div>
+            <h2 class="center">Outer Source (Frontend)</h2>
+            <form id="front">
+                <input type="text" name="id" placeholder="Insert ID (1-12)" required>
+                <input type="submit" onclick="myFunction()">
+            </form>
+        </div>
+
+        <div class="image-container">
+            <img id="image" class="invisible" src="" alt="image" />
+            <h3 id="email" class="invisible"></h3>
+        </div>
+    </div>
+    <div id="form">
+        <div>
+            <h2 class="center">Outer Source (Backend)</h2>
+            <form action="/outer_source" method="post">
+                <input type="number" name="id" placeholder="Insert ID (1-12)" required>
+                <input type="submit">
+            </form>
+        </div>
+
+        <div class="image-container">
+            {% if user %}
+                <img src={{user["avatar"]}} alt="image" />
+                <h3>email: {{ user["email"] }}</h3>
+            {% endif %}
+        </div>
+        {% if message1 %}
+            <h2>{{ message1 }}</h2>
+        {% endif %}
+    </div>
+
+{% endblock %}
